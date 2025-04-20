@@ -19,5 +19,4 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 recyclerview = "androidx.recyclerview:recyclerview:1.4.0"
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-
+android-application = { id = "com.android.application", version = "8.3.1" }
