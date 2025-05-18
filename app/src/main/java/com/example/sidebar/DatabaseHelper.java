@@ -1,5 +1,7 @@
 package com.example.sidebar;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -141,6 +143,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECURRENCE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIE);
         onCreate(db);
+    }
+    // Méthode pour ajouter un utilisateur
+    public boolean addUser(String name, String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_NAME, name);
+        values.put(COLUMN_USER_EMAIL, email);
+        values.put(COLUMN_USER_PASSWORD, password);
+
+        long result = db.insert(TABLE_USER, null, values);
+        db.close();
+
+        // Si l'insertion échoue, la méthode insert() retourne -1
+        return result != -1;
+    }
+    // Vérifier si l'email est déjà enregistré
+    public boolean isEmailRegistered(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_USER_EMAIL + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{email});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+    // Vérifier si les identifiants sont corrects
+    public boolean validateUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_USER_EMAIL + " = ? AND " + COLUMN_USER_PASSWORD + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{email, password});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
     }
 
 }
