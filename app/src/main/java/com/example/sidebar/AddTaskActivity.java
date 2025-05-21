@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.io.IOException;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -18,6 +19,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private Button btnSave;
     private DatabaseHelper dbHelper;
     private String dateTache;
+    private TFLitePriorityPredictor priorityPredictor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,13 @@ public class AddTaskActivity extends AppCompatActivity {
         dateTache = getIntent().getStringExtra("selectedDate");
         dbHelper.insererCategoriesSiVide();
         dbHelper.insererPrioritesSiVide();
+
+        try {
+            priorityPredictor = new TFLitePriorityPredictor(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erreur lors du chargement du modèle de priorité", Toast.LENGTH_SHORT).show();
+        }
 
         loadCategories();
         loadPriorites();
@@ -68,7 +77,37 @@ public class AddTaskActivity extends AppCompatActivity {
         String rappel2 = inputRappel2.getText().toString().trim();
 
         String categorieNom = spinnerCategorie.getSelectedItem().toString();
-        String prioriteTitre = spinnerPriorite.getSelectedItem().toString();
+        String prioriteTitre;
+
+        if (spinnerPriorite.getSelectedItem() == null) {
+            // Si aucune priorité n'est sélectionnée, utiliser le modèle pour prédire
+            if (priorityPredictor != null) {
+                // Préparer les features pour le modèle
+                float[] features = prepareFeatures(titre, description, heureDebut, heureFinPrevue);
+                int predictedPriority = priorityPredictor.predict(features);
+                
+                // Convertir la priorité prédite en titre
+                switch (predictedPriority) {
+                    case 1:
+                        prioriteTitre = "High";
+                        break;
+                    case 2:
+                        prioriteTitre = "Medium";
+                        break;
+                    case 3:
+                        prioriteTitre = "Low";
+                        break;
+                    default:
+                        prioriteTitre = "Medium"; // Valeur par défaut
+                }
+                Toast.makeText(this, "Priorité prédite par l'IA: " + prioriteTitre, Toast.LENGTH_SHORT).show();
+            } else {
+                prioriteTitre = "Medium"; // Valeur par défaut si le modèle n'est pas disponible
+                Toast.makeText(this, "Utilisation de la priorité par défaut: Medium", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            prioriteTitre = spinnerPriorite.getSelectedItem().toString();
+        }
 
         if (titre.isEmpty() || dateTache == null) {
             Toast.makeText(this, "Veuillez remplir le titre et la date", Toast.LENGTH_SHORT).show();
@@ -98,4 +137,29 @@ public class AddTaskActivity extends AppCompatActivity {
         finish();
     }
 
+    private float[] prepareFeatures(String titre, String description, String heureDebut, String heureFinPrevue) {
+        // Créer un tableau de features pour le modèle
+        // Vous devrez adapter ces features en fonction de votre modèle
+        float[] features = new float[4];
+        
+        // Exemple de features (à adapter selon votre modèle)
+        features[0] = titre.length() / 100.0f; // Normaliser la longueur du titre
+        features[1] = description.length() / 500.0f; // Normaliser la longueur de la description
+        
+        // Convertir les heures en valeurs numériques
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            Date debut = sdf.parse(heureDebut);
+            Date fin = sdf.parse(heureFinPrevue);
+            if (debut != null && fin != null) {
+                features[2] = debut.getHours() / 24.0f; // Normaliser l'heure de début
+                features[3] = (fin.getTime() - debut.getTime()) / (24 * 60 * 60 * 1000.0f); // Normaliser la durée
+            }
+        } catch (Exception e) {
+            features[2] = 0.5f; // Valeur par défaut
+            features[3] = 0.5f; // Valeur par défaut
+        }
+        
+        return features;
+    }
 }
