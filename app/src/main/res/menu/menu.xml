@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Groupe principal : tâches -->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/today"
+            android:icon="@drawable/today"
+            android:title="@string/title_today"
+            android:checked="true" />
+        <item
+            android:id="@+id/upcoming"
+            android:icon="@drawable/prochaines"
+            android:title="@string/title_upcoming" />
+        <item
+            android:id="@+id/week"
+            android:icon="@drawable/week"
+            android:title="@string/title_week" />
+        <item
+            android:id="@+id/priorite"
+            android:icon="@drawable/priorite"
+            android:title="@string/title_prio" />
+        <item
+            android:id="@+id/late"
+            android:icon="@drawable/retard"
+            android:title="@string/title_late_task" />
+        <item
+            android:id="@+id/calendar"
+            android:icon="@drawable/calendar"
+            android:title="@string/title_Calendar" />
+    </group>
+
+    <!-- 🟣 Ligne de séparation -->
+    <item
+    android:id="@+id/divider"
+    android:title="───────────────────"
+    android:enabled="false"
+    android:icon="@null"
+    android:titleCondensed=""
+    android:visible="true" />
+
+    <!-- Groupe secondaire : infos et paramètres -->
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/trash"
+            android:icon="@drawable/trash"
+            android:title="@string/title_Trash" />
+        <item
+            android:id="@+id/infos"
+            android:icon="@drawable/infos"
+            android:title="@string/title_infos" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/setting"
+            android:title="@string/title_setting" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="@string/title_logout" />
+    </group>
+
+</menu>
