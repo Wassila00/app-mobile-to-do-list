@@ -9,8 +9,8 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorPrimaryDark">#3262C4</color>
     <color name="colorRed">#C11515</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="colorPrimary">#6200EE</color>
-
+    <color name="nav_icon_color">#444444</color>
+    <color name="background_light">#FAFAFA</color>
+    <color name="purple_500">#6200EE</color>
 
 </resources>
