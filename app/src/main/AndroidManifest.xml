@@ -25,7 +25,22 @@
             android:name=".RegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.Menu" />
+        <activity
+            android:name=".AgendaActivity"
+            android:theme="@style/Theme.AppCompat" /> <!-- Ajoutez ce thème -->
+
+        <activity android:name=".AddTaskActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".EditTaskActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
 
 </manifest>

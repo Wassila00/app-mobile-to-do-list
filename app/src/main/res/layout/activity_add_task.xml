@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/bg">
+
+    <!-- Titre -->
+    <EditText
+        android:id="@+id/inputTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/input_bg"
+        android:hint="Titre"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Description -->
+    <EditText
+        android:id="@+id/inputDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputTitle" />
+
+    <!-- Heure de début -->
+    <EditText
+        android:id="@+id/inputHeureDebut"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:hint="Heure de début (HH:mm)"
+        android:inputType="time"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputDescription" />
+
+    <!-- Heure de fin prévue -->
+    <EditText
+        android:id="@+id/inputHeureFinPrevue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:hint="Heure de fin prévue (HH:mm)"
+        android:inputType="time"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputHeureDebut" />
+
+    <!-- Premier rappel -->
+    <EditText
+        android:id="@+id/inputRappel1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:hint="Rappel avant début (HH:mm)"
+        android:inputType="time"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputHeureFinPrevue" />
+
+    <!-- Deuxième rappel -->
+    <EditText
+        android:id="@+id/inputRappel2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:hint="Rappel de retard (HH:mm)"
+        android:inputType="time"
+        android:padding="12dp"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputRappel1" />
+
+    <!-- Label Catégorie -->
+    <TextView
+        android:id="@+id/labelCategorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catégorie"
+        android:textColor="@color/lavender_light"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputRappel2"
+        android:layout_marginTop="16dp" />
+
+    <!-- Spinner Catégorie -->
+    <Spinner
+        android:id="@+id/spinnerCategorie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/item_background"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelCategorie" />
+
+    <!-- Label Priorité -->
+    <TextView
+        android:id="@+id/labelPriorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priorité"
+        android:textColor="@color/lavender_light"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCategorie"
+        android:layout_marginTop="16dp" />
+
+    <!-- Spinner Priorité -->
+    <Spinner
+        android:id="@+id/spinnerPriorite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/item_background"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelPriorite" />
+
+    <!-- Bouton Ajouter -->
+    <Button
+        android:id="@+id/btnAjouterTache"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/btn_bg"
+        android:padding="12dp"
+        android:text="Ajouter la tâche"
+        android:textColor="@color/lavender_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerPriorite" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
