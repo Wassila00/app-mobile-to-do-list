@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Welcome to Taskify</string>
+    <string name="title_today">Today</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_week">This week</string>
+    <string name="title_prio">Prioritized</string>
+    <string name="title_late_task">Late task</string>
+    <string name="title_Trash">Trash</string>
+    <string name="title_infos">Infos</string>
+    <string name="title_Calendar">Calendar</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_setting">Settings</string>
+    <string name="username">Wafae</string>
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
+
+</resources>
