@@ -1,7 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Thème principal pour le jour -->
+    <!-- Base application theme. -->
     <style name="Base.Theme.Sidebar" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/lavender_light</item>
+      <item name="android:statusBarColor">@color/lavender_light</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="Theme.Menu" parent="Base.Theme.Sidebar" />
 </resources>

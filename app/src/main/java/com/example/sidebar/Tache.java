@@ -16,11 +16,13 @@ public class Tache {
     private String heureFinReelle;  // format : HH:mm
     private boolean estTerminee;
     private long retardMinutes = 0;
+    private int priorite; // 1 = haute, 2 = moyenne, 3 = basse
+
 // en minutes
 
 
     // Constructeur principal
-    public Tache(int id, String titre, String description, String date, String heureDebut, String heureFinPrevue, String heureFinReelle, boolean estTerminee) {
+    public Tache(int id, String titre, String description, String date, String heureDebut, String heureFinPrevue, String heureFinReelle, boolean estTerminee, int priorite) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -29,6 +31,7 @@ public class Tache {
         this.heureFinPrevue = heureFinPrevue;
         this.heureFinReelle = heureFinReelle;
         this.estTerminee = estTerminee;
+        this.priorite = priorite;
     }
 
     // Getters
@@ -119,6 +122,14 @@ public class Tache {
 
     public void setRetardMinutes(long retardMinutes) {
         this.retardMinutes = retardMinutes;
+    }
+
+    public int getPriorite() {
+        return priorite;
+    }
+
+    public void setPriorite(int priorite) {
+        this.priorite = priorite;
     }
 
 

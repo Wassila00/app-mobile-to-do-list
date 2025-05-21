@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Thème pour les écrans du menu -->
-    <style name="Theme.Menu" parent="Base.Theme.Sidebar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:textColor">@color/black</item>
+    <!--Base Application theme . -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark"> @color/colorPrimaryDark</item>
     </style>
-    <style name="CalendarViewCustom" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:dateTextAppearance">@style/CalendarDateText</item>
-    </style>
-
-    <style name="CalendarDateText" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">@color/lavender_dark</item>
-    </style>
-
-
 </resources>
