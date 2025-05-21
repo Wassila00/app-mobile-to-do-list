@@ -3,17 +3,21 @@ package com.example.sidebar;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -33,13 +37,57 @@ public class AgendaActivity extends AppCompatActivity {
     private EventAdapter adapter;
     private List<Event> allEvents = new ArrayList<>();
     private DatabaseHelper databaseHelper;
-
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
+    private View menuButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
+        drawerLayout = findViewById(R.id.drawer_layout_calendar);
+        navView = findViewById(R.id.nav_view);
+        menuButton = findViewById(R.id.button_menu);
 
+        menuButton.setOnClickListener(v -> {
+            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        navView.setNavigationItemSelectedListener(item -> {
+            item.setChecked(true);
+            int id = item.getItemId();
+            if (id == R.id.calendar) {
+                // On est déjà sur cette activité donc on ferme juste le drawer
+                drawerLayout.closeDrawers();
+            } else if (id == R.id.today) {
+                startActivity(new Intent(this, TodayActivity.class));
+                finish();
+            } else if (id == R.id.upcoming) {
+                startActivity(new Intent(this, UpcomingActivity.class));
+                finish();
+            } else if (id == R.id.week) {
+                startActivity(new Intent(this, WeekActivity.class));
+                finish();
+            } else if (id == R.id.late) {
+                startActivity(new Intent(this, LateTaskActivity.class));
+                finish();
+            } else if (id == R.id.main) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            }
+            else if (id == R.id.priorite) {
+                startActivity(new Intent(this, PrioriteActivity.class));
+                finish();
+            }
+
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
         databaseHelper = new DatabaseHelper(this);
 
         calendarView = findViewById(R.id.calendarView);

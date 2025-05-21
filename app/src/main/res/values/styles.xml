@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Thème pour les écrans du menu -->
     <style name="Theme.Menu" parent="Base.Theme.Sidebar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -16,5 +17,7 @@
         <item name="android:textColor">@color/lavender_dark</item>
     </style>
 
-
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark"> @color/colorPrimaryDark</item>
+    </style>
 </resources>

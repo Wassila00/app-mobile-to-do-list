@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
 plugins {
 
         // Utilisez soit "alias(libs.plugins.android.application)" soit "com.android.application" mais pas les deux
@@ -15,3 +16,4 @@ plugins {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+

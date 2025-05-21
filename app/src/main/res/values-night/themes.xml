@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Thème principal pour la nuit -->
     <style name="Base.Theme.Sidebar" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/lavender_dark</item>

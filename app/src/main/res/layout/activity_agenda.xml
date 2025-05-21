@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/agendaRoot"
+    android:id="@+id/drawer_layout_calendar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/lavender_medium"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-
-
-    <!-- 📅 Calendar -->
-    <CalendarView
-        android:id="@+id/calendarView"
+    <!-- Contenu principal -->
+    <LinearLayout
+        android:id="@+id/agendaRoot"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/CalendarViewCustom"
-        android:layout_marginBottom="16dp" />
-
-    <!-- 📋 Liste des événements -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewEvents"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:background="@color/lavender_medium"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:fitsSystemWindows="true">
 
-    <!-- ➕ FAB -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddTask"
+        <!-- Toolbar personnalisée -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:gravity="center_vertical"
+            android:background="@color/lavender_dark"
+            android:elevation="4dp">
+
+            <ImageButton
+                android:id="@+id/button_menu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_menu"
+                app:tint="@android:color/white"
+                android:contentDescription="Menu" />
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agenda"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp" />
+
+        </LinearLayout>
+
+        <!-- 📅 Calendar -->
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/CalendarViewCustom"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 📋 Liste des événements -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEvents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/lavender_medium"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
+        <!-- ➕ FAB -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add"
+            android:contentDescription="Ajouter une tâche"
+            app:backgroundTint="@color/lavender_light" />
+    </LinearLayout>
+
+    <!-- Sidebar Navigation -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        android:contentDescription="Ajouter une tâche"
-        app:backgroundTint="@color/lavender_light" />
-
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/lavender_light"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

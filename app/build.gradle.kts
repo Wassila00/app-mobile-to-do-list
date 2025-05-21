@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
+
     id("com.google.gms.google-services")
     kotlin("android")
     kotlin("kapt")
+
 }
 
 android {
@@ -48,15 +50,18 @@ android {
                 "META-INF/ASL2.0"
             )
         }
+
     }
 }
 
 dependencies {
-    // Core Android Libraries (Only AndroidX)
+
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
     implementation(libs.recyclerview)
 
     // Google Play Services Auth
@@ -95,5 +100,6 @@ configurations.all {
         exclude(module = "support-core-ui")
         exclude(module = "support-fragment")
     }
+
 }
 
