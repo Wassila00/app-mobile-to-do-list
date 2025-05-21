@@ -8,4 +8,13 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="CalendarViewCustom" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:dateTextAppearance">@style/CalendarDateText</item>
+    </style>
+
+    <style name="CalendarDateText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/lavender_dark</item>
+    </style>
+
+
 </resources>
